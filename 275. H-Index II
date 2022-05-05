@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int hIndex(vector<int>& arr)
+    {
+        int n=arr.size();
+        
+        int low=0,high=n-1,mid;
+        
+        //int h=0;
+        
+        while(low <= high)
+        {
+            mid = low + (high-low)/2;
+            if(arr[mid] == n-mid)
+                return arr[mid];
+            else if(arr[mid] > n-mid)   // CHECKING NO OF ELEMENT ON RIGHT HAND SIDE
+                high=mid-1;
+            else
+                low=mid+1;
+        }
+        return n-low;
+    }
+};
